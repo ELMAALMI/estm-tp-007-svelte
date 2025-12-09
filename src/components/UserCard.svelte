@@ -1,25 +1,28 @@
 <script>
-  export let name;
-  export let age;
-  export let email;
-  export let note = 0;
+  import { Utils } from "$lib/utils";
+
+  // export let name;
+  // export let age;
+  // export let email;
+  // export let note = 0;
+  export let user = {
+    name: "Default Name",
+    age: 0,
+    email: "default@example.com",
+  };
+
+  if (!Utils.IsObject(user)) {
+    throw new Error("is not a object");
+  }
 </script>
 
-<div class="user-card">
-  <h2>{name}</h2>
-  <p>Age: {age}</p>
-  <p>Email: {email}</p>
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title">{user.name}</h2>
+    <p class="card-text">Age: {user.age}</p>
 
-  {#if note > 10}
-    <p>Note: {note}</p>
-  {/if}
+    {#if user.note > 10}
+      <p class="card-text"><strong>Note: {user.note}</strong></p>
+    {/if}
+  </div>
 </div>
-
-<style>
-  .user-card {
-    border: 1px solid #ccc;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    max-width: 300px;
-  }
-</style>
